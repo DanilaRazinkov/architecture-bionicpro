@@ -10,3 +10,116 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Стили для App компонента */
+.loading-spinner {
+  @apply animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4;
+}
+
+.loading-container {
+  @apply min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center;
+}
+
+.loading-text {
+  @apply text-xl text-gray-700;
+}
+
+/* Стили для ReportPage компонента */
+.auth-error {
+  @apply text-red-600 mb-1;
+}
+
+.button-primary {
+  @apply inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors;
+}
+
+.button-secondary {
+  @apply inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors no-underline;
+}
+
+.report-container {
+  @apply min-h-screen bg-gray-50;
+}
+
+.report-content {
+  @apply max-w-7xl mx-auto px-4 py-6;
+}
+
+.report-title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.report-pre {
+  @apply bg-white p-4 rounded-lg border border-gray-200 overflow-auto text-sm;
+}
+
+.report-message {
+  @apply text-gray-500;
+}
+
+.download-link {
+  @apply inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors no-underline mt-4;
+}
+
+/* Анимация спиннера */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Стили для AuthCallback компонента */
+.auth-container {
+  @apply min-h-screen flex items-center justify-center bg-gray-50;
+}
+
+.auth-card {
+  @apply max-w-sm w-full flex flex-col gap-8 text-center;
+}
+
+.auth-title {
+  @apply mt-6 text-3xl font-extrabold text-gray-900;
+}
+
+.auth-message {
+  @apply mt-2 text-sm text-gray-600;
+}
+
+.auth-action {
+  @apply mt-6;
+}
+
+.auth-spinner {
+  @apply animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto;
+}
+
+.auth-button {
+  @apply w-full flex justify-center px-4 py-2 border-none rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors cursor-pointer;
+}
+
+.success-icon {
+  @apply mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100;
+}
+
+.success-icon-svg {
+  @apply h-6 w-6 text-green-600;
+}
+
+.error-icon {
+  @apply mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100;
+}
+
+.error-icon-svg {
+  @apply h-6 w-6 text-red-600;
+}
+
+.logout-button {
+  @apply px-4 py-2 border border-red-200 rounded-lg text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-colors;
+}

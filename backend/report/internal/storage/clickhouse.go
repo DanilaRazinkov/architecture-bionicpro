@@ -49,9 +49,9 @@ func (c *ClickHouseClient) GetReportSummary(ctx context.Context) (*models.Report
 	query := `
 		SELECT
 			COUNT(DISTINCT user_id) as total_users,
-			COUNT(DISTINCT CASE WHEN last_activity > now() - INTERVAL 30 DAY THEN user_id END) as active_users,
-			SUM(total_sessions) as total_sessions,
-			AVG(total_usage_time) as average_usage
+			COUNT(DISTINCT CASE WHEN last_signal_time > now() - INTERVAL 30 DAY THEN user_id END) as active_users,
+			SUM(total_signals) as total_sessions,
+			AVG(avg_signal_duration_sec) as average_usage
 		FROM default.report_patient_activity_mart
 	`
 
@@ -80,18 +80,18 @@ func (c *ClickHouseClient) getUserInfo(ctx context.Context, userID int) (string,
 func (c *ClickHouseClient) getReportData(ctx context.Context, userID int) (*models.UserReport, error) {
 	query := `
 		SELECT
-			user_id,
-			session_count as total_sessions,
-			total_signals,
-			avg_duration * session_count as total_usage_time,
-			avg_duration as average_session_time,
-			muscle_groups,
-			avg_accuracy,
-			report_date as last_activity
-		FROM bionicpro.user_reports_realtime
-		WHERE user_id = ?
-		ORDER BY report_date DESC
-		LIMIT 1
+        	user_id,
+        	session_count as total_sessions,
+        	total_signals,
+        	avg_duration * session_count as total_usage_time,
+        	avg_duration as average_session_time,
+        	muscle_groups,
+        	avg_accuracy,
+        	updated as last_activity
+        FROM default.user_reports_realtime
+        WHERE user_id = ?
+        ORDER BY updated DESC
+        LIMIT 1
 	`
 
 	row := c.conn.QueryRow(ctx, query, userID)
@@ -113,7 +113,7 @@ func (c *ClickHouseClient) getReportData(ctx context.Context, userID int) (*mode
 
 func (c *ClickHouseClient) createEmptyReport(userID int, username, email string) *models.UserReport {
 	return &models.UserReport{
-		UserID:            uint32(userID),
+		UserID:            uint64(userID),
 		Username:          username,
 		Email:             email,
 		HasData:           false,

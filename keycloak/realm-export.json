@@ -51,6 +51,11 @@
           "temporary": false
         }
       ],
+      "attributes": {
+        "crm_user_id": [
+          "1"
+        ]
+      },
       "realmRoles": [
         "user"
       ]
@@ -70,7 +75,7 @@
       ],
       "attributes": {
         "crm_user_id": [
-          "1"
+          "2"
         ]
       },
       "realmRoles": [
@@ -83,11 +88,7 @@
       "email": "admin1@example.com",
       "firstName": "Admin",
       "lastName": "One",
-      "attributes": {
-        "crm_user_id": [
-          "2"
-        ]
-      },
+
       "credentials": [
         {
           "type": "password",

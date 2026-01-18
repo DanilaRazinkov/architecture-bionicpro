@@ -36,8 +36,8 @@ type CDNConfig struct {
 func Load() *Config {
 	return &Config{
 		ClickHouse: ClickHouseConfig{
-			Host:     getEnv("CLICKHOUSE_HOST", "olap_db"),
-			Port:     getEnvAsInt("CLICKHOUSE_PORT", 9000),
+			Host:     getEnv("CLICKHOUSE_HOST", "localhost"),
+			Port:     getEnvAsInt("CLICKHOUSE_PORT", 9431),
 			Database: getEnv("CLICKHOUSE_DATABASE", "default"),
 			Username: getEnv("CLICKHOUSE_USERNAME", "default"),
 			Password: getEnv("CLICKHOUSE_PASSWORD", ""),

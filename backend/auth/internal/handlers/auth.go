@@ -144,7 +144,7 @@ func (h *AuthHandler) GetReports(c *gin.Context) {
 	}
 
 	client := &http.Client{Timeout: 30 * time.Second}
-	req, err := http.NewRequestWithContext(c.Request.Context(), "GET", "http://reports-api:5003/api/v1/reports", nil)
+	req, err := http.NewRequestWithContext(c.Request.Context(), "GET", "http://reports:5003/api/v1/reports", nil)
 	if err != nil {
 		log.Println("failed to create request:", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Errorf("failed to create request: %w", err)})
@@ -201,7 +201,7 @@ func (h *AuthHandler) GenerateReports(c *gin.Context) {
 	}
 
 	client := &http.Client{Timeout: 30 * time.Second}
-	req, err := http.NewRequestWithContext(c.Request.Context(), "POST", "http://reports-api:5003/api/v1/reports/generate", nil)
+	req, err := http.NewRequestWithContext(c.Request.Context(), "POST", "http://reports:5003/api/v1/reports/generate", nil)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create request"})
 		return

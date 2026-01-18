@@ -30,6 +30,11 @@ const ReportPage: React.FC = () => {
           return;
         }
 
+        if (res.status === 403) {
+          setError('Access Restricted');
+          return;
+        }
+
         if (!res.ok) {
           if (res.status === 404) {
             setError('Report not ready yet');
@@ -79,7 +84,17 @@ const ReportPage: React.FC = () => {
         </div>
       </div>
     );
-  } else {
+  } else if (error === 'Report not ready yet') {
+     return (
+       <div className="loading-container">
+         <div className="text-center">
+           <p className="auth-error">'Report not ready yet'</p>
+           <div className="flex justify-between items-center mb-6">
+           </div>
+         </div>
+       </div>
+     );
+  } else if (error === 'Access Restricted') {
      return (
        <div className="loading-container">
          <div className="text-center">
